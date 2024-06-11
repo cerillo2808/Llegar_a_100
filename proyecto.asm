@@ -27,7 +27,7 @@ MANEJO_TURNOS:
 	div  $t1, $t2 #cantidad de turnos / 2
 	mfhi $t0 #residuo de la division
 	beq $t0, 0, TURNO_HUMANO #es turno del humano si el turno es par
-	j TURNO_MAQUINA_TONTO
+	j TURNO_MAQUINA
 	
 
 TURNO_HUMANO:
@@ -61,9 +61,40 @@ TURNO_HUMANO:
 	
 	jr $ra
 	
-TURNO_MAQUINA_TONTO:
+TURNO_MAQUINA:
 
 	addi $t1, $t1, 1 #sumarle 1 al contador de turnos
+
+	beq $a1, 1, TIRADA_RANDOM
+	beq $a1, 12, TIRADA_RANDOM
+	beq $a1, 23, TIRADA_RANDOM
+	beq $a1, 34, TIRADA_RANDOM
+	beq $a1, 45, TIRADA_RANDOM
+	beq $a1, 56, TIRADA_RANDOM
+	beq $a1, 67, TIRADA_RANDOM
+	beq $a1, 78, TIRADA_RANDOM
+	beq $a1, 89, TIRADA_RANDOM
+	
+	bge $a1, 90, MOVIMIENTO_GANADOR
+	
+	la $a0, turno_maquina
+	li $v0, 4
+	syscall
+	
+	#TODO: AGARRAR EL MULTIPLO DE 11
+	
+	la $a0, contador
+	li $v0, 4
+	syscall
+	
+	move $a0, $a1
+	li $v0, 1
+	syscall
+	
+	jr $ra
+	
+	
+TIRADA_RANDOM:
 
 	la $a0, turno_maquina
 	li $v0, 4
@@ -71,9 +102,10 @@ TURNO_MAQUINA_TONTO:
 	
 	move $s0, $a1 #muevo temporalmente al contador a s0 porque ocupo usar a1
 	
-	li $a1, 10 #genera random con restriccion hasta 9
-	li $v0, 42 #PRECAUCION: puede devolver 0, hay que restringir eso
+	li $a1, 9 #genera random con restriccion hasta 9
+	li $v0, 42
 	syscall #el random creado esta en $a0
+	addi $a0, $a0, 1
 	li $v0, 1
 	syscall
 	
@@ -89,9 +121,31 @@ TURNO_MAQUINA_TONTO:
 	syscall
 	
 	jr $ra
-	
+		
+MOVIMIENTO_GANADOR:
 
-TURNO_MAQUINA_INTELIGENTE:
+	li $t3, 100
+	sub $t2, $t3, $a1
+	
+	la $a0, turno_maquina
+	li $v0, 4
+	syscall
+	
+	move $a0, $t2
+	li $v0, 1
+	syscall
+	
+	add $a1, $a1, $t2
+	
+	la $a0, contador
+	li $v0, 4
+	syscall
+	
+	move $a0, $a1
+	li $v0, 1
+	syscall
+	
+	jr $ra
 
 GANADOR_HUMANO:
 
