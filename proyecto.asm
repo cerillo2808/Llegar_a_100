@@ -75,13 +75,34 @@ TURNO_MAQUINA:
 	beq $a1, 78, TIRADA_RANDOM
 	beq $a1, 89, TIRADA_RANDOM
 	
-	bge $a1, 90, MOVIMIENTO_GANADOR
+	bge $a1, 90, MOVIMIENTO_GANADOR #si es mayor o igual que 9
+	
+	bge $a1, 79, TIRADA_89
+	bge $a1, 68, TIRADA_78
+	bge $a1, 57, TIRADA_67
+	bge $a1, 46, TIRADA_56
+	bge $a1, 35, TIRADA_45
+	bge $a1, 24, TIRADA_34
+	bge $a1, 13, TIRADA_23
+	bge $a1, 2, TIRADA_12
+	
+	jr $ra
+	
+TIRADA_89:
 	
 	la $a0, turno_maquina
 	li $v0, 4
 	syscall
 	
-	#TODO: AGARRAR EL MULTIPLO DE 11
+	li $t2, 89
+	
+	sub $t0, $t2, $a1
+	
+	move $a0, $t0
+	li $v0, 1
+	syscall
+	
+	add $a1, $a1, $t0
 	
 	la $a0, contador
 	li $v0, 4
@@ -93,6 +114,187 @@ TURNO_MAQUINA:
 	
 	jr $ra
 	
+TIRADA_78:
+	
+	la $a0, turno_maquina
+	li $v0, 4
+	syscall
+	
+	li $t2, 78
+	
+	sub $t0, $t2, $a1
+	
+	move $a0, $t0
+	li $v0, 1
+	syscall
+	
+	add $a1, $a1, $t0
+	
+	la $a0, contador
+	li $v0, 4
+	syscall
+	
+	move $a0, $a1
+	li $v0, 1
+	syscall
+	
+	jr $ra
+	
+TIRADA_67:
+	
+	la $a0, turno_maquina
+	li $v0, 4
+	syscall
+	
+	li $t2, 67
+	
+	sub $t0, $t2, $a1
+	
+	move $a0, $t0
+	li $v0, 1
+	syscall
+	
+	add $a1, $a1, $t0
+	
+	la $a0, contador
+	li $v0, 4
+	syscall
+	
+	move $a0, $a1
+	li $v0, 1
+	syscall
+	
+	jr $ra
+	
+TIRADA_56:
+	
+	la $a0, turno_maquina
+	li $v0, 4
+	syscall
+	
+	li $t2, 56
+	
+	sub $t0, $t2, $a1
+	
+	move $a0, $t0
+	li $v0, 1
+	syscall
+	
+	add $a1, $a1, $t0
+	
+	la $a0, contador
+	li $v0, 4
+	syscall
+	
+	move $a0, $a1
+	li $v0, 1
+	syscall
+	
+	jr $ra
+	
+TIRADA_45:
+	
+	la $a0, turno_maquina
+	li $v0, 4
+	syscall
+	
+	li $t2, 45
+	
+	sub $t0, $t2, $a1
+	
+	move $a0, $t0
+	li $v0, 1
+	syscall
+	
+	add $a1, $a1, $t0
+	
+	la $a0, contador
+	li $v0, 4
+	syscall
+	
+	move $a0, $a1
+	li $v0, 1
+	syscall
+	
+	jr $ra
+	
+TIRADA_34:
+	
+	la $a0, turno_maquina
+	li $v0, 4
+	syscall
+	
+	li $t2, 34
+	
+	sub $t0, $t2, $a1
+	
+	move $a0, $t0
+	li $v0, 1
+	syscall
+	
+	add $a1, $a1, $t0
+	
+	la $a0, contador
+	li $v0, 4
+	syscall
+	
+	move $a0, $a1
+	li $v0, 1
+	syscall
+	
+	jr $ra
+	
+TIRADA_23:
+	
+	la $a0, turno_maquina
+	li $v0, 4
+	syscall
+	
+	li $t2, 23
+	
+	sub $t0, $t2, $a1
+	
+	move $a0, $t0
+	li $v0, 1
+	syscall
+	
+	add $a1, $a1, $t0
+	
+	la $a0, contador
+	li $v0, 4
+	syscall
+	
+	move $a0, $a1
+	li $v0, 1
+	syscall
+	
+	jr $ra
+	
+TIRADA_12:
+	
+	la $a0, turno_maquina
+	li $v0, 4
+	syscall
+	
+	li $t2, 12
+	
+	sub $t0, $t2, $a1
+	
+	move $a0, $t0
+	li $v0, 1
+	syscall
+	
+	add $a1, $a1, $t0
+	
+	la $a0, contador
+	li $v0, 4
+	syscall
+	
+	move $a0, $a1
+	li $v0, 1
+	syscall
+	
+	jr $ra
 	
 TIRADA_RANDOM:
 
