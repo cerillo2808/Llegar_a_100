@@ -6,6 +6,7 @@
 	linea: .asciiz "\n"
 	gana_humano: .asciiz "\nFelicidades. El usuario gana."
 	gana_maquina: .asciiz "\nHas perdido. Gana la máquina. ¡Mejor suerte la próxima!"
+	message_error_mayor: .asciiz "\nNo puedes ingresar un número mayor a 10. Intentalo de nuevo."
 
 .text
 
@@ -40,6 +41,7 @@ TURNO_HUMANO:
 	
 	li $v0, 5 #lee el numero ingresado PRECAUCION: Si ingresa algo que no es un numero, se cae. Acepta núemros fuera del rango.
 	syscall #el numero ingresado está en $v0
+	bgt $v0, 10, ERROR_MAYOR # En caso de ingresar numero mayor a 10, salta a error
 	move $a2, $v0 #el numero ingresado se mueve a $a2
 	
 	la $a0, numero_ingresado
@@ -60,6 +62,14 @@ TURNO_HUMANO:
 	syscall
 	
 	jr $ra
+
+ERROR_MAYOR: 
+	la $a0, message_error_mayor
+	li $v0, 4
+	syscall # Print mensaje de error
+	
+	sub $t1, $t1, 1 # Le resta al contador de turnos para que vuelva a ser sumado al regresar a TURNO_HUMANO
+	j TURNO_HUMANO
 	
 TURNO_MAQUINA:
 
