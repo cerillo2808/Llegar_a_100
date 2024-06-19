@@ -14,13 +14,13 @@
 	li $t1, 0 #la cantidad de turnos
 	
 	jal MANEJO_TURNOS 
-	bltu $a1, 100, MANEJO_TURNOS
+	bltu $a1, 100, MANEJO_TURNOS #seguir jugando turnos hasta que el contador sea igual o mayor que 100
 	
 	li $t2, 2
 	div $t1, $t2
 	mfhi $t0
-	bne $t0, 0, GANADOR_HUMANO
-	j GANADOR_MAQUINA
+	bne $t0, 0, GANADOR_HUMANO #si el turno actual es impar, significa que ganó el usuario
+	j GANADOR_MAQUINA #si no ganó el usuario, gana la máquina
 		
 MANEJO_TURNOS:
 	
@@ -86,7 +86,7 @@ TURNO_MAQUINA:
 	beq $a1, 78, TIRADA_RANDOM
 	beq $a1, 89, TIRADA_RANDOM
 	
-	bge $a1, 90, MOVIMIENTO_GANADOR #si es mayor o igual que 9
+	bge $a1, 90, MOVIMIENTO_GANADOR #si es mayor o igual que 90
 	
 	bge $a1, 79, TIRADA_89
 	bge $a1, 68, TIRADA_78
@@ -338,7 +338,7 @@ TIRADA_RANDOM:
 MOVIMIENTO_GANADOR:
 
 	li $t3, 100
-	sub $t2, $t3, $a1
+	sub $t2, $t3, $a1 #resta para encontrar el numero necesario para sumar 100
 	
 	la $a0, turno_maquina
 	li $v0, 4
