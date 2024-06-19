@@ -27,3 +27,4 @@ En el caso de este programa, el jugador competirá contra una máquina, la cual 
 - Sólo hay una partida conocida en la que la máquina no gana: entradas del usuario en orden = `(1, 12, 23, 34, 45, 56, 67, 78, 89, 100)`.
 - Se desarrollará una interfaz gráfica, en la cual se mostrará en una ventana el estado actual del contador y el número de turnos que ha durado la partida.
 - El programa se terminará de ejecutar una vez el contador llegue a 100.
+- Si se le ingresa un caracter diferente a entero, ocurrirá un error de syscall y el programa terminará de ejecutarse.
