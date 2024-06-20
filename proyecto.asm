@@ -13,7 +13,7 @@
 	linea: .asciiz "\n"
 	gana_humano: .asciiz "\nFelicidades. El usuario gana."
 	gana_maquina: .asciiz "\nHas perdido. Gana la máquina. ¡Mejor suerte la próxima!"
-	message_error_mayor: .asciiz "\nNo puedes ingresar un número mayor a 10. Intentalo de nuevo."
+	message_error_fuera_de_rango: .asciiz "\nNo puedes ingresar un número mayor a 10 o menor a 1. Intentalo de nuevo."
 	turno: .asciiz "\n Inserte cualquier caracter para continuar "
 	impresion: .word 0
 .text
@@ -52,7 +52,8 @@ TURNO_HUMANO:
 	
 	li $v0, 5 #lee el numero ingresado PRECAUCION: Si ingresa algo que no es un numero, se cae.
 	syscall #el numero ingresado está en $v0
-	bgt $v0, 10, ERROR_MAYOR # En caso de ingresar numero mayor a 10, salta a error
+	bgt $v0, 10, ERROR_FUERA_DE_RANGO # En caso de ingresar numero mayor a 10, salta a error
+	blt $v0, 1, ERROR_FUERA_DE_RANGO #En caso de ingresar un numero menor a 1, salta a error
 	move $a2, $v0 #el numero ingresado se mueve a $a2
 	
 	la $a0, numero_ingresado
@@ -73,8 +74,8 @@ TURNO_HUMANO:
 	syscall
 	j separate1
 	
-ERROR_MAYOR: 
-	la $a0, message_error_mayor
+ERROR_FUERA_DE_RANGO: 
+	la $a0, message_error_fuera_de_rango
 	li $v0, 4
 	syscall # Print mensaje de error
 	
