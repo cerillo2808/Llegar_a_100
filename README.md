@@ -1,4 +1,4 @@
-ñ# Proyecto Final de Fundamentos de Arquitectura: Llegar a 100
+# Proyecto Final de Fundamentos de Arquitectura: Llegar a 100
 
 Universidad de Costa Rica <br />
 Escuela de Ciencias de la Computación e Informática <br />
