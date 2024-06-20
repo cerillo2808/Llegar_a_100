@@ -19,7 +19,7 @@ En el caso de este programa, el jugador competirá contra una máquina, la cual 
 2. Descargar código fuente `proyecto.asm`.
 3. En MARS, abrir el .asm descargado del paso anterior.
 4. Abrir 'Tools' y presionar la opción Bitmpa Display para la interfaz gráfica.
-5. Ajustar el tamaño de Bitmap Display a: 32, 32, 512, 512.
+5. Ajustar el tamaño de Bitmap Display a: `32, 32, 512, 512`.
 6. Presionar el botón 'Connect to MIPS' antes de iniciar la partida.
 7. Presione el botón de esamblar.
 8. Usar el botón de ejecutar.
@@ -32,4 +32,4 @@ En el caso de este programa, el jugador competirá contra una máquina, la cual 
 - En la interfaz gráfica se mostrará en una ventana el estado actual del contador y el número de turnos que ha durado la partida.
 - El programa se terminará de ejecutar una vez el contador llegue a 100.
 - Si se le ingresa un caracter diferente a entero, ocurrirá un error de syscall y el programa terminará de ejecutarse.
-- Si no se siguen las instrucciones durante el juego y/o el programa deja de responder: Terminar la tarea desde 'Task Mnager' 
+- Si no se siguen las instrucciones durante el juego y/o el programa deja de responder: Terminar la tarea desde 'Task Manager' 
