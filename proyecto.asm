@@ -408,7 +408,6 @@ separate1: # Separa los números de $a1 (Contador) en dos dígitos
 	
 	li $t9, 1
 	sw $t9, impresion
-	div $a1,$t7
 	divu $a1, $t7
 	# LO to quotient and HI to remainder
 	mflo $t8
