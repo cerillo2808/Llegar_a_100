@@ -484,9 +484,6 @@ evaluar:
 	beq $t5,2,separate2
 	beq $t5,3,setTurnos
 	beq $t5,4,MANEJO_TURNOS
-	
-fin:
-	# j REGRESO?
 
 # Interfaz Gráfica Nums: De 0 a 9
 # Tamaño de una fila es:64
